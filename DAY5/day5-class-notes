@@ -1,0 +1,606 @@
+Exception Handling
+----------------------------------------
+Logging
+PyTest
+Regular Expression
+Threading 
+DBConnection
+NumPy ->Pandas ->matplotlib 
+-----------------------------------------
+
+Exception Handling
+--------------------
+
+Errors
+------
+  |->1. Syntax Error - not following python rules 
+	------------
+		|->We can't execute single line of code
+ 
+
+  |->2. Logical Error - following python rules , but logical mistakes/correction - Exception
+	---------------
+		|->Exit Signal  
+                |--> To avoid this Exit state - we can write exception block //Handle Exception
+	try
+	except
+	else
+	finally
+	-------------//python keywords 
+
+
+	try:
+	   <code - initialization> / monitoring block
+	except <ExcepionName> as eobj:
+	   Handle the Error
+	else:
+	   There is no Error
+	finally:
+	   Always running block
+
+
+
+    try:
+	var = 10
+	print(var)
+    except NameError as eobj:
+	print(eobj)
+    else:
+	var = var + 100
+        print("var=",var)
+    finally:
+	print("Thank you")
+
+
+   try:
+     fobj = open('filename','r')
+   except FileNotFoundError as eobj:
+     print(eobj)
+   else:
+     s = fobj.read()
+     print(s)
+   finally:
+     fobj.close()
+
+
+    try:
+      L = [10,20,30]
+      print(L[9])
+    except NameError as eobj:
+      print(eobj)
+    except KeyError as eobj:
+      print(eobj)
+    except IndexErro as eobj:
+      print(eobj)
+    else:
+	print(L)
+    finally:
+        print("Thank you")
+
+Exception - predefined class
+
+======================================================================================================
+
+++++++++++++++++++++++
+| code-Application   |
++--------------------+
+  |
+ process 
+
+logging module
+
+ - record events,error,application execution details //processing - running 
+
+
+priority levels
+
+INFO
+WARN
+ERR
+CRTIC
+
+(Ex: Linux OS -> journalctl -p err)
+
+ 
+import logging
+logging.basicConfig(level=logging.INFO)
+logging.DEBUG
+logging.ERROR
+
+
+DEBUG ->INFO ->WARNING ->ERROR ->CRITICAL
+
+logging.basicConfig()
+
+
+format="%(levelname)s: %(message)s"
+
+logging.basicConfig(level=logging.DEBUG,format="%(levelname)s: %(message)s")
+
+logging.debug("checking application configuration") ->DEBUG: checking application configuration
+logging.info("Application started")  --> INFO: Application started
+
+severity 
+-----------------------------------------
+To store log messages in file
+
+filename="r1.log"
+datefmt="%Y-%m-%d %H:%M:%S"
+
+========================================================================================
+
+pytest 
+
+assert - check whether condition is true. if condition is false python raise an AssertionError
+
+assert <condition>, "Error Message"
+
+
+>>> n = 25
+>>>
+>>> assert n > 15, "n value must be at least 15"
+>>>
+>>> 25 > 15
+True
+>>>
+>>> n = 10
+>>> 10 >15
+False
+>>>
+>>> assert n > 15, "n value must be at least 15"
+Traceback (most recent call last):
+  File "<python-input-11>", line 1, in <module>
+    assert n > 15, "n value must be at least 15"
+           ^^^^^^
+AssertionError: n value must be at least 15
+>>>
+
+function name starts with test word (ex: def test_result() )
+file name: test_<filename>.py
+
+
+def calc(a,b):
+    return a+b
+-----------------------//this is actual application call
+
+def test_calc():
+    assert calc(10,20) == 30
+---------------------------------- // this is test function
+
+assert checks whether the result is equal to 30
+if the condition is true , the test passes.
+if the condition is false, pytest reports a failure
+
+
+file: demo1.py
+----------------
+def calc(a,b):
+    return a+b
+-----------------------//this is actual application call
+
+file: test_demo1.py
+=======================
+from demo1 import calc
+def test_calc():
+    assert calc(10,20) == 30
+---------------------------------- // this is test function
+
+project/
+     |__demo1.py 
+     |__test_demo1.py
+	..
+	..
+
+# To run pytest
+
+python -m pytest 
+python -m pytest -v
+
+python -m pytest test_demo1.py
+
+
+########################################
+
+pytest marker - add meta data to test function 
+
+@pytest.mark.<markerName>
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# decorator
+# 
+>>> def f1(a):
+...     def f2(*arg,**kwargs): # wrapper
+...         a()
+...     return f2
+...
+>>> # meta programming - adding new features to an existing code
+>>> #
+>>> # @decoratorFunction
+>>> # def app_code():
+>>> #     .....
+>>> #     .....
+>>> # app_code()
+>>> # ------------------------ app_code = f1(app_code) -> app_code()
+>>> #
+>>>
+>>> @f1
+... def app1():
+...     print("App1 code")
+...
+>>> @f1
+... def app2():
+...     print("App2 Code")
+...
+>>> @f1
+... def app3():
+...     print("App3 code")
+...
+>>> app2()
+App2 Code
+>>>
+>>> app1()
+App1 code
+>>>
+>>> app3()
+App3 code
+>>>
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@pytest.mark.<markerName>
+
+
+
+
+python -m pytest -m <markerName> -v 
+		  --------------
+		  |->select only marker testcases
+
+ex:
+python -m pytest -m integration -v
+	 ------------------------------//run only integration test
+
+
+Except integration test run every thing
+-----------------------------------------
+python -m pytest -m "not integration" -v 
+
+------------------------------------------------------------
+fixtures
+---------
+
+def test_<name>():
+    ----
+
+>>> import requests
+>>>
+>>> requests.get('https://www.google.com')
+<Response [200]>
+>>>
+>>> r = requests.get('https://www.google.com')
+>>>
+>>> r.status_code
+200
+>>>
+>>> assert r.status_code == 200
+>>>
+>>>
+
+fixtures are function ->execute before each test function to which it is applied
+----------
+ |->useful for data initialization(ex: URL connection/DB connection etc.,)
+
+
+###################################################################################################
+		Request
+Client --------------->-------------> Server	..>...
+						     |
+	---------------<-----------------------------
+		Response
+
+			1. Page response (WebPage) = <html>....{{var}}...</html>
+			|
+			2. Data response - JSON - there is no <html> tags - Data only format
+
+
+# Get - data / read data
+
+requests.get(URL) ->statucode 
+
+import requests 
+r = requests.get(URL)
+
+r.headers['Content-Type'] -> text/html (WebPage)
+			  -> application/json (Data Only)
+
+
+
+# To download webpage
+
+web_page = r.text 
+--------
+>>> URL="https://www.google.com"
+>>>
+>>> r = requests.get(URL)
+>>> r.status_code
+200
+>>> r.headers['Content-Type']
+'text/html; charset=ISO-8859-1'
+>>>
+>>> web_page = r.text
+>>>
+>>> type(web_page)
+<class 'str'>
+>>> len(web_page)
+86975
+>>>
+>>> with open('test.html','w') as wobj:
+...     wobj.write(web_page)
+...
+86975
+>>>
+
+## recap MD topics
+list of list/dict
+dict of list/dict
+
+python ------------- json
+int		     int
+float		     float
+str		     str
+True False	     true false
+list []		     array  []
+
+tuple() ------------> array []
+
+dict {'Key':value} ----> object {'Key':Value}
+
+
+>>> URL="https://api.github.com/users/hadley/orgs"
+>>>
+>>> r = requests.get(URL)
+>>> r.status_code
+200
+>>> r.headers['Content-Type']
+'application/json; charset=utf-8'
+>>>
+>>> python_data = r.json()
+>>> type(python_data)
+<class 'list'>
+>>>
+>>> len(python_data)
+10
+>>> type(python_data[0])
+<class 'dict'>
+>>>
+>>>
+>>> python_data[0]['node_id']
+'MDEyOk9yZ2FuaXphdGlvbjQyMzYzOA=='
+>>>
+>>> python_data[0]['id']
+423638
+>>>
+>>> python_data[1]['id']
+513560
+>>>
+----------------------------------------------------------------------------------------------------
+Regular Expression
+==================
+ |
+ | -> Search a pattern - more specific 
+ |
+ | -> Substitute - Old pattern ->Replace New from input string
+
+	+
+ | -> Split - Split Single data to multiple values 
+
+import re 
+
+re.search() - Search  ==> re.search(input_pattern_string,input_string,re.I) -> <ack/object> / None
+			  -- ====== 
+re.findall() - Search => re.findall(input_pattern_string,input_string,re.I) -> [matched_result] / []
+
+
+Regx chars
+-----------
+^
+$
+^pattern$
+.
+.*
+[ ]
+^[ ]
+[ ]$
+[^ ]
+^$
+|
++
+()
+{}
+--------------
+
+^ =>  ^pattern - search a pattern line starts with
+
+s1="raj,sales,pune"
+
+s2="sales,vijay"
+
+re.search("sales",s1) ->True
+re.search("sales",s2) ->True
+------------------------------//General search
+
+line starts with sales word
+------------------------------
+re.search("^sales",s1) ->False
+
+re.search("^sales",s2) ->True
+-------------------------------//Regx search
+
+
+^5 - line starts with digit 5 
+--
+^" " -line starts with space 
+----
+
+" " <or> \s <=== space char
+
+
+^pattern - starts with pattern
+
+pattern$ - ends with pattern
+
+re.search('sales$','asfssdfsdafsadfasdfsda sales') ->True
+
+re.search('sales$','sales,raj') ->False
+re.search('sales$','raj,sales,111') ->False
+
+re.search("\s$",input_String) 
+	  -----
+	   |-> line ends with space
+
+>>> import os
+>>> len(os.listdir("."))
+386
+>>> import re
+>>>
+>>> for var in os.listdir("."):
+...     if(re.search("pdf$",var)):
+...         print(var)
+...
+attention.pdf
+Img-Activitypage.pdf
+nmcli_examples.pdf
+>>>
+
+
+
+
+^pattern$ --> pattern only
+
+^sales$ ---> sales 
+
+^sales,pune$ 
+  --> "101,raj,sales,pune" ->False
+  --> "raj,sales,pune" --->False
+  --> "sales,pune,1000" -->False
+
+  --> "sales,pune" -->True
+  
+  --> "salespune" -->False 
+		
+.(dot) -> it match any single char
+
+"^ab.."  --> line starts with ab followed by any two chars
+
+
+.* ->List of all
+
+[] ->character class
+--
+
+[Aa]run
+----------> Arun arun //OK
+
+[Aa][rR]un
+-------------->ARun Arun arun aRun
+	  ==========================//OK
+
+[a-z] - match any lowerchars
+[A-Z] - match any uppercase chars
+
+[a-zA-Z] - match any alpha 
+
+[0-9] - match any digits
+
+[a-zA-Z0-9] - match any alpha numeric (except space,specialchar)
+
+^[a-z] - line starts with any single lowercase chars
+-------
+
+[^a-z] -->Not matching any lowercase chars
+------- 
+
+[^a-zA-Z0-9]
+-------------> Not matching Alpha and number 
+
+^$ ->empty line
+---
+
+ pattern1|pattern2 - any one pattern is matched ->OK
+
+ (pattern1)(pattern2) - both pattern should match
+
+ <pattern>+ - 1 or more times
+-----------   ==  ============
+ ab+c 
+ ----------> abc abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc //OK
+
+<pattern>{n} - n times
+
+ ab{3}c ==> abbbc //OK 
+ abc abbc abbbbc //Not-Matched
+
+<pattern>{n,} - minimum n times maximum nolimit
+
+ab{3,}c -->abbbc abbbbbbbbbbbbbbbbbbbbbbbc 
+
+ab+c same as ab{1,}c  
+======================
+<pattern>{n,m} - minimum n times maximum m
+
+ab{3,5}c ==> abbbc abbbbc abbbbbc //OK
+-------
+
+>>> re.search("^sales.pune$","sales,pune")
+<re.Match object; span=(0, 10), match='sales,pune'>
+>>>
+>>> re.search("^sales.pune$","sales|pune")
+<re.Match object; span=(0, 10), match='sales|pune'>
+>>>
+>>> re.search("^sales.pune$","sales pune")
+<re.Match object; span=(0, 10), match='sales pune'>
+>>>
+>>> re.search("^sales.pune$","salespune")
+>>>
+>>> re.search("^sales.pune$","sales  pune")
+>>>
+>>>
+>>> for var in os.listdir("."):
+...     if(re.search("pdf$|csv$|java$",var)):
+...         print(var)
+...
+.ghcp-appmod-java
+attention.pdf
+banking_dataset.csv
+bank_marketing_dataset.csv
+branch_report.csv
+clean.csv
+cleaned_used_cars.csv
+customers.csv
+>>>
+>>>
+>>> re.sub("sales","QA","101,raj,sales,pune")
+'101,raj,QA,pune'
+>>>
+>>> re.sub("sales","QA","101,raj,admin,pune")
+'101,raj,admin,pune'
+>>>
+>>> s="101,raj,sales,pune"
+>>>
+>>> s.split(",")
+['101', 'raj', 'sales', 'pune']
+>>>
+>>> re.split(",",s)
+['101', 'raj', 'sales', 'pune']
+>>>
+>>> s="root:x,bin|bash(linux,device:345"
+>>>
+>>> re.findall("[^a-zA-Z0-9]",s)
+[':', ',', '|', '(', ',', ':']
+>>>
+>>> re.sub("[^a-zA-Z0-9]","/",s)
+'root/x/bin/bash/linux/device/345'
+>>>
+>>> re.split("[^a-zA-Z0-9]",s)
+['root', 'x', 'bin', 'bash', 'linux', 'device', '345']
+>>>
+
