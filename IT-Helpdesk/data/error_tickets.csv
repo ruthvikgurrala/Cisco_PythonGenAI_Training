@@ -1,0 +1,13 @@
+Ticket ID,Employee name,Category,Priority,Status,Date,Description
+TCK-9001,Marcus Kane,AudioVisual,High,Open,2026-03-01,Rejected: Invalid category 'AudioVisual' (allowed: Network, Hardware, Software, Access, Email, Other)
+TCK-9002,Elena Vance,Access,EmergencyNow,In Progress,2026-03-01,Rejected: Invalid priority 'EmergencyNow' (allowed: Low, Medium, High, Critical)
+TCK-9003,Gordon Freeman,Software,Medium,UnderReview,2026-03-02,Rejected: Invalid status 'UnderReview' (allowed: Open, In Progress, Resolved, Closed)
+TCK-9004,,Hardware,Low,Open,2026-03-02,Rejected: Missing employee name (empty field)
+TCK-9005,Alyx Vance,Network,Medium,Resolved,,Rejected: Missing submission date (empty field)
+,Barney Calhoun,Email,Low,Closed,2026-03-03,Rejected: Missing Ticket ID (empty field)
+TCK-9006,Wallace Breen,Software,High,Open,2026-03-03,
+TCK-9001,Judith Mossman,Email,Medium,Open,2026-03-04,Rejected: Duplicate Ticket ID 'TCK-9001' (collides with row 1)
+TCK-9007,Isaac Kleiner,Hardware,Low,Resolved,99/99/9999,Rejected: Impossible calendar date format
+TCK-9008,Eli Vance,Network,Critical,Open,2026-02-30,Rejected: Invalid day for February (2026-02-30)
+TCK-9009,Chell Aperture,Telephony,UrgentP1,Open,2026-03-05,Rejected: Multi-error - Invalid category 'Telephony' and invalid priority 'UrgentP1'
+TCK-9010,Wheatley Core,Access,Medium,Archived,not-a-valid-date,Rejected: Multi-error - Invalid status 'Archived' and invalid date 'not-a-valid-date'

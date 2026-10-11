@@ -1,0 +1,26 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+
+# Streamlit
+.streamlit/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Reports and runtime outputs
+reports/*.csv
+reports/*.json
+!reports/.gitkeep
+
+# Logs
+logs/*.log
+!logs/.gitkeep

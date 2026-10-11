@@ -1,0 +1,9 @@
+Ticket ID,Employee name,Category,Priority,Status,Date,Description
+TCK-2001,Lucas Scott,Network,High,Open,2026-03-01,Valid ticket: slow connection in warehouse.
+TCK-2002,Peyton Sawyer,AudioVisual,High,Open,2026-03-01,Rejected: Invalid category 'AudioVisual'.
+TCK-2003,Nathan Scott,Access,EmergencyNow,In Progress,2026-03-02,Rejected: Invalid priority 'EmergencyNow'.
+TCK-2004,Haley James,Software,Medium,UnderReview,2026-03-02,Rejected: Invalid status 'UnderReview'.
+TCK-2005,,Hardware,Low,Open,2026-03-03,Rejected: Missing employee name.
+TCK-2001,Brooke Davis,Email,Medium,Open,2026-03-03,Rejected: Duplicate ticket ID 'TCK-2001'.
+TCK-2006,Dan Scott,Hardware,Low,Resolved,99/99/9999,Rejected: Bad calendar date.
+TCK-2007,Karen Roe,Email,Low,Resolved,2026-03-04,Valid ticket: archive mailbox created.

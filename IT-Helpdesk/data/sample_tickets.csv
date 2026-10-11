@@ -1,0 +1,26 @@
+Ticket ID,Employee name,Category,Priority,Status,Date,Description
+TCK-1001,Alice Johnson,Network,High,Resolved,2026-03-01,Office Wi-Fi disconnects intermittently on the 4th floor west wing.
+TCK-1002,Bob Smith,Access,Critical,Resolved,2026-03-01,Cannot connect to corporate VPN after password change.
+TCK-1003,Charlie Davis,Hardware,Medium,Open,2026-03-02,Laptop battery draining within 45 minutes; needs replacement.
+TCK-1004,Diana Prince,Software,Low,Resolved,2026-03-02,Requesting license and installation of Docker Desktop for development.
+TCK-1005,Evan Wright,Email,High,Open,2026-03-03,Outlook client fails to synchronize inbox and gives certificate error.
+TCK-1006,Fiona Gallagher,Access,Medium,Closed,2026-03-03,Request access to AWS production read-only role for audit review.
+TCK-1007,George Clark,Hardware,Critical,In Progress,2026-03-04,External monitor flickering continuously and USB-C hub not detected.
+TCK-1008,Hannah Abbott,Network,Medium,Resolved,2026-03-04,Conference room 302 Ethernet wall port has no carrier signal.
+TCK-1009,Ian Malcolm,Software,High,Open,2026-03-05,VS Code crashes immediately on launch after recent Windows update.
+TCK-1010,Julia Roberts,Email,Low,Closed,2026-03-05,Create a shared mailbox for the Q2 Customer Success team.
+TCK-1011,Kevin Bacon,Access,High,In Progress,2026-03-06,Account locked after multiple failed MFA attempts on Okta.
+TCK-1012,Laura Croft,Hardware,Low,Resolved,2026-03-06,Ergonomic wireless mouse scroll wheel is physically sticking.
+TCK-1013,Michael Scott,Other,Low,Closed,2026-03-07,Desk phone headset adapter missing from workstation setup.
+TCK-1014,Nina Simone,Network,Critical,Open,2026-03-07,Entire engineering subnet experiencing 70% packet loss to internal DNS.
+TCK-1015,Oscar Martinez,Software,Medium,In Progress,2026-03-08,Excel macro security settings preventing financial monthly closing scripts from running.
+TCK-1016,Pam Beesly,Email,Medium,Resolved,2026-03-08,Phishing email reported; verify if any malicious links were clicked.
+TCK-1017,Quinn Fabray,Access,Low,Closed,2026-03-09,Reset password for legacy SAP portal staging environment.
+TCK-1018,Ryan Howard,Software,Critical,Open,2026-03-09,Internal deployment CLI tool throwing SSL verification errors.
+TCK-1019,Sarah Connor,Hardware,High,In Progress,2026-03-10,Laptop fan making loud grinding noise and CPU throttling severely.
+TCK-1020,Toby Flenderson,Other,Low,Resolved,2026-03-10,Request replacement badge lanyard and RFID keycard holder.
+TCK-1021,Uma Thurman,Network,Medium,Open,2026-03-11,Slow file transfer speeds when pulling large datasets from NAS storage.
+TCK-1022,Victor Stone,Software,Medium,Resolved,2026-03-11,Git credential manager pop-up loop when pushing to company GitHub org.
+TCK-1023,Wanda Maximoff,Email,High,Open,2026-03-12,Cannot send emails to external domains; outbound NDR bounce error 550.
+TCK-1024,Xavier Charles,Access,Critical,In Progress,2026-03-12,New hire onboarding: urgent provision for Jira and GitHub enterprise access.
+TCK-1025,Yvonne Strahovski,Hardware,Medium,Open,2026-03-13,Webcam resolution stuck in 360p during Zoom client meetings.

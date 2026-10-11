@@ -1,11 +1,48 @@
-# Python bytecode
+# Project directory to exclude
+Project/
+
+# Environment and sensitive configuration files
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.cert
+*.pfx
+secrets.*
+credentials.json
+client_secret*.json
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python bytecode and cache
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
 
-# Temporary demo log files
+# Runtime and demo logs
 *.log
+!**/logs/.gitkeep
+!**/reports/.gitkeep
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Operating system files
+.DS_Store
+Thumbs.db
 
 # Editor configurations
 .vscode/
 .idea/
+*.swp
+*.swo
