@@ -703,6 +703,41 @@ elif navigation == "🔍 Data Validation":
         """
     )
 
+    st.markdown("---")
+    st.subheader("📜 Application Event Logs (`logs/app.log`)")
+    st.caption("Live audit trail of system events, validation checks, status updates, and exceptions.")
+
+    log_path = Path("logs/app.log")
+    if log_path.exists():
+        try:
+            log_content = log_path.read_text(encoding="utf-8", errors="replace")
+            log_lines = log_content.strip().splitlines()
+
+            col_log1, col_log2 = st.columns([3, 1])
+            with col_log1:
+                st.info(f"**Log File:** `{log_path}` | **Total Entries:** `{len(log_lines)}` lines | **Active Level:** `INFO`")
+            with col_log2:
+                st.download_button(
+                    label="📥 Download app.log",
+                    data=log_content,
+                    file_name="app.log",
+                    mime="text/plain",
+                    use_container_width=True,
+                )
+
+            # Display last 50 log lines in scrollable box
+            display_lines = log_lines[-50:] if len(log_lines) > 50 else log_lines
+            st.text_area(
+                f"Recent Log Output (Last {len(display_lines)} lines)",
+                value="\n".join(display_lines),
+                height=300,
+                help="Showing the most recent events from logs/app.log",
+            )
+        except Exception as e:
+            st.error(f"Could not read log file: {e}")
+    else:
+        st.info("No log file found at `logs/app.log`. Logs are generated on application activity.")
+
 
 # =========================================================================
 # 6. ABOUT
